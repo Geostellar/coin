@@ -13,6 +13,7 @@
     "truffle": "^3.4.9"
   },
   "dependencies": {
+    "web3": "^1.0.0-beta.22",
     "zeppelin-solidity": "^1.2.0"
   }
 }
