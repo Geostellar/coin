@@ -60,5 +60,3 @@ typings/
 # dotenv environment variables file
 .env
 
-# Lets not save package-lock.json files.  Its automatically generated anyway.
-package-lock.json
