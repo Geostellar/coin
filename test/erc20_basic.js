@@ -11,6 +11,11 @@ contract('ERC20Basic Contract', accounts => {
          campaign = await mock.campaign({initialize: initial});
     });
 
+    it("should expose the total supply, vis a vis the ERC20 standard", async () => {
+        let totalSupply = await campaign.totalSupply.call();
+        assert.equal(totalSupply.valueOf(), initial, "Convervation of moolah broken in this reality");
+    });
+
     it("should instantiate with the correct owner having some tokens", async () => {
         let balance = await campaign.balanceOf.call(accounts[0]);
         assert.equal(balance.valueOf(), initial, "Owner does not have correct number of tokens");
