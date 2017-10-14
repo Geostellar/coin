@@ -181,11 +181,6 @@ We can also send some ether to the bounty contract.
 Deploying Externally
 --------------------
 
-To deploy to an external network, one need only do a few things:
-
-* Make sure ``truffle.js`` has a valid account for the network.
-* Specify the network (e.g., ``ropsten``) on the command line.
-
 I have not been able to deploy to ropsten with truffle, and I assume that
 the issues I'm seeing would apply to the foundation network too.
 
@@ -216,3 +211,5 @@ In a few minutes it will be deployed and you will have the interface in
 your client:
 
 .. image:: images/rop_dep.png
+
+This procedure could be used for the development network also.
