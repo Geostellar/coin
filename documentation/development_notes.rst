@@ -33,7 +33,7 @@ Creating the Account
 From the parity interface, one should choose Accounts-> Restore. Enter the
 necessary information, but *leave the recover phrase blank*.
 
-.. image:: documentation/images/create_account.png
+.. image:: images/create_account.png
 
 This will create an account with billions and billions of initial ether.
 
@@ -176,7 +176,7 @@ become possible to interact with the contract via the GUI.
 
 We can also send some ether to the bounty contract.
 
-.. image:: documentation/images/bounty.png
+.. image:: images/bounty.png
 
 Deploying Externally
 --------------------
