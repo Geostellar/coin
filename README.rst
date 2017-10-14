@@ -118,4 +118,4 @@ Running the tests is straight-forward:
 * run ``truffle test`` in another terminal
 
 Unfortunately, using Open Zeppelin complicates deploying to other networks.
-See the `development notes <development_notes.rst>_ for details.
+See the `development notes <development_notes.rst>__ for details.
