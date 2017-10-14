@@ -67,7 +67,7 @@ options::
   parity --chain dev --reseal-min-period 0 \
     --unlock 00a329c0648769A73afAc7F9381E08FB43dBEA72 \
     --password pass.txt \
-    --force-us
+    --force-ui
 
 A few things to note:
 
