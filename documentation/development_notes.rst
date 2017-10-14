@@ -185,3 +185,34 @@ To deploy to an external network, one need only do a few things:
 
 * Make sure ``truffle.js`` has a valid account for the network.
 * Specify the network (e.g., ``ropsten``) on the command line.
+
+I have not been able to deploy to ropsten with truffle, and I assume that
+the issues I'm seeing would apply to the foundation network too.
+
+To deploy the contract externally, you'll need to produce both an ABI and
+binary file. So, for example, in deploying the bounty:
+
+.. code:: bash
+
+  solcjs \
+    --abi \
+    --bin \
+    ZydecoBounty.sol \
+    Zydeco.sol \
+    zeppelin-solidity/contracts/ownership/Ownable.sol  \
+    zeppelin-solidity/contracts/token/ERC20.sol \
+    zeppelin-solidity/contracts/math/SafeMath.sol \
+    zeppelin-solidity/contracts/Bounty.sol \
+    zeppelin-solidity/contracts/payment/PullPayment.sol  \
+    zeppelin-solidity/contracts/lifecycle/Destructible.sol  \
+    zeppelin-solidity/contracts/token/ERC20Basic.sol
+
+This will create both the files, and they can be pasted into the deployment
+box in the parity client.
+
+.. image:: images/ropsten_deploy.png
+
+In a few minutes it will be deployed and you will have the interface in
+your client:
+
+.. image:: images/rop_dep.png
