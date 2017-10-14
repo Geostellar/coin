@@ -118,4 +118,4 @@ Running the tests is straight-forward:
 * run ``truffle test`` in another terminal
 
 Unfortunately, using Open Zeppelin complicates deploying to other networks.
-See the `development notes <https://github.com/Geostellar/coin/blob/master/documentation/development_notes.rst>`__ for details.
+See the `development notes <documentation>`__ for details.
