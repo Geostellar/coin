@@ -108,3 +108,14 @@ checks to this function.
 
 For more information, see the Open Zeppelin `blog entry <https://blog.zeppelin.solutions/setting-up-a-bug-bounty-smart-contract-with-openzeppelin-a0e56434ad0e>`__ on the
 subject.
+
+Development
+-----------
+
+Running the tests is straight-forward:
+
+* run ``testrpc`` in a terminal
+* run ``truffle test`` in another terminal
+
+Unfortunately, using Open Zeppelin complicates deploying to other networks.
+See the `development notes <development_notes.rst>_ for details.
