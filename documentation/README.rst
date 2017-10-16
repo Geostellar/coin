@@ -213,3 +213,61 @@ your client:
 .. image:: images/rop_dep.png
 
 This procedure could be used for the development network also.
+
+Using the C Compiler
+....................
+
+The process of externally deploying (either on the main or testing network)
+is somewhat easier if one installs the ``solc`` compiler and doesn't realy on
+the ``solcjs`` version that is installed via ``npm``. Again, one should copy the
+files being compiled to the ``node_modules`` directory of the project,
+but the actual compilation command is easier::
+
+  cd node_modules
+  cp ../contracts/Zydeco* .
+  solc -o . --bin --abi ZydecoBounty.solcjs
+
+will create the ``bin`` and ``abi`` files in the current directory. Also note
+that ``solc`` supports an output format that supports a combination of the binary
+and ABI files, and the parity client also supprts this. The command::
+
+  solc --combined-json bin,abi Zydeco.sol -o .
+
+will create a single file, ``combined.json``, that can be pasted into the
+contract deployment form.
+
+
+Publishing and Verifying Source Code
+------------------------------------
+
+The source code to a smart contract can be associated with the contract
+as it exists on the block-chain in a verifiable way. To show how this is done,
+let's deploy the ``combined.json`` file from above.
+
+.. image:: images/combined.png
+
+Once it is deployed you will be able to see it's address:
+
+.. image:: images/deployed_address.png
+
+To verify the code, you will first need to flatten it -- in other words,
+the dependency graph needs to be walked and all imports need to be
+lexically substituted for the actual code being imported.
+
+The easiest way to do this is to use the `solidity flattener <https://github.com/BlockCatIO/solidity-flattener>`__ tool
+that is available on GitHub. The following command will create a file,
+``flattened.sol``, which does this::
+
+  solidity_flattener --output flattened.sol Zydeco.sol
+
+(note this is a python command and you will need python 3.5+ installed).
+If one looks up the contract on `Etherscan <https://ropsten.etherscan.io/address/0x3802f259edeecf45d317c680a5e03df895eb21de#code>`__ ,
+one can paste this file into the verification tab so that other will know what code
+produced the file. Note that you'll need to correctly set the compiler version,
+contract name, and optimization setting for this to work. Once it's successfully done,
+anyone can see the source code associated with contract, for verification and
+research purposes.
+
+.. image:: images/verified.png
+
+An identical procedure can be used for the Foundation (production) network.
