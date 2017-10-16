@@ -20,6 +20,11 @@ contract Zydeco is Ownable, ERC20, Target {
     mapping(address => uint256) balances; // Zydeco balances
     mapping (address => mapping (address => uint256)) allowed; // From the ERC20 allowances
 
+    // Expected of ERC20
+    string public constant name     = "ZydecoTestV0";
+    string public constant symbol   = "ZYDECOV0";
+    uint8  public constant decimals = 18;
+
     bool public compromised; // In testing, true means the contract was breached
 
 
