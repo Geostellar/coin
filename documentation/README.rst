@@ -278,3 +278,24 @@ research purposes.
    :align: center
 
 An identical procedure can be used for the Foundation (production) network.
+
+Getting Ether
+-------------
+
+If you're working on the testing network (ropsten), you will need ether. The easiest way is via
+a faucet, for example http://faucet.ropsten.be:3001/. You can paste your account address into
+the form and in short order get 3 ether, which should last a while.
+
+One can also try ones hand at mining by installing ``ethminer``. To do this start
+parity with the ``author`` flag, ie::
+
+  parity --chain ropsten --author 00242c11CDbB65a14E9A5642BCb431d22675a7dE
+
+(note the lack of ``0x`` from the account address). Then, in a different
+terminal::
+
+  ethminer # with the CPU
+  # or ...
+  ethminer -G # If you have GPGPU computing via OpenCL.
+
+Of the two ways, the faucet is easiest.
