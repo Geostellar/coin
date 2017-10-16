@@ -34,6 +34,7 @@ From the parity interface, one should choose Accounts-> Restore. Enter the
 necessary information, but *leave the recover phrase blank*.
 
 .. image:: images/create_account.png
+   :align: center
 
 This will create an account with billions and billions of initial ether.
 
@@ -177,6 +178,7 @@ become possible to interact with the contract via the GUI.
 We can also send some ether to the bounty contract.
 
 .. image:: images/bounty.png
+   :align: center
 
 Deploying Externally
 --------------------
@@ -206,11 +208,13 @@ This will create both the files, and they can be pasted into the deployment
 box in the parity client.
 
 .. image:: images/ropsten_deploy.png
+   :align: center
 
 In a few minutes it will be deployed and you will have the interface in
 your client:
 
 .. image:: images/rop_dep.png
+   :align: center
 
 This procedure could be used for the development network also.
 
@@ -245,10 +249,12 @@ as it exists on the block-chain in a verifiable way. To show how this is done,
 let's deploy the ``combined.json`` file from above.
 
 .. image:: images/combined.png
+   :align: center
 
 Once it is deployed you will be able to see it's address:
 
 .. image:: images/deployed_address.png
+   :align: center
 
 To verify the code, you will first need to flatten it -- in other words,
 the dependency graph needs to be walked and all imports need to be
@@ -269,5 +275,6 @@ anyone can see the source code associated with contract, for verification and
 research purposes.
 
 .. image:: images/verified.png
+   :align: center
 
 An identical procedure can be used for the Foundation (production) network.
