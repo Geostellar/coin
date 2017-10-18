@@ -154,7 +154,10 @@ Unfortunately, it seems like the contract has to be copied to the
     zeppelin-solidity/contracts/Bounty.sol \
     zeppelin-solidity/contracts/payment/PullPayment.sol  \
     zeppelin-solidity/contracts/lifecycle/Destructible.sol  \
-    zeppelin-solidity/contracts/token/ERC20Basic.sol
+    zeppelin-solidity/contracts/token/ERC20Basic.sol \
+    zeppelin-solidity/contracts/token/StandardToken.sol \
+    zeppelin-solidity/contracts/token/BasicToken.sol
+
 
 ``ZydecoBouty.sol`` can be compiled similarly, but one will need to
 explicitly add ``Zydeco.sol`` to the supplied files.
@@ -170,7 +173,9 @@ explicitly add ``Zydeco.sol`` to the supplied files.
     zeppelin-solidity/contracts/Bounty.sol \
     zeppelin-solidity/contracts/payment/PullPayment.sol  \
     zeppelin-solidity/contracts/lifecycle/Destructible.sol  \
-    zeppelin-solidity/contracts/token/ERC20Basic.sol
+    zeppelin-solidity/contracts/token/ERC20Basic.sol \
+    zeppelin-solidity/contracts/token/StandardToken.sol \
+    zeppelin-solidity/contracts/token/BasicToken.sol
 
 Once the address has been noted and the ABI has been generated, it
 become possible to interact with the contract via the GUI.
@@ -202,7 +207,9 @@ binary file. So, for example, in deploying the bounty:
     zeppelin-solidity/contracts/Bounty.sol \
     zeppelin-solidity/contracts/payment/PullPayment.sol  \
     zeppelin-solidity/contracts/lifecycle/Destructible.sol  \
-    zeppelin-solidity/contracts/token/ERC20Basic.sol
+    zeppelin-solidity/contracts/token/ERC20Basic.sol \
+    zeppelin-solidity/contracts/token/StandardToken.sol \
+    zeppelin-solidity/contracts/token/BasicToken.sol
 
 This will create both the files, and they can be pasted into the deployment
 box in the parity client.
@@ -229,7 +236,7 @@ but the actual compilation command is easier::
 
   cd node_modules
   cp ../contracts/Zydeco* .
-  solc -o . --bin --abi ZydecoBounty.solcjs
+  solc -o . --bin --abi ZydecoBounty.sol
 
 will create the ``bin`` and ``abi`` files in the current directory. Also note
 that ``solc`` supports an output format that supports a combination of the binary
