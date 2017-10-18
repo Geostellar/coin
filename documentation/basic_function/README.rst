@@ -148,4 +148,36 @@ and deploying new systems. That was we could continue to raise money
 and continue to deploy systems without doing another ICO. This has the
 additional benefit of keeping the tokens from expiring after 30 years.
 
-If anyone can figure it out, this would be a really good thing.
+One possibility would be to make sure that the token *does not accrue
+ehter*. Not all of the implications to this have been thought though, but
+in basic terms:
+
+For the sake of discussion, let's say that payments are made every year.
+When a payment is made a data item is included as to how much was made in this
+current payment. Token holders can withdraw this payment up until the time when
+the next payment is made. As an abbreviated example:
+
+* An ICO is performed in 2017.
+* One year later a payment of 20 ether is made. People with tokens may
+  withdraw their portion of the ether.
+* One year after *that* another payment is made, this time of 30 ether.
+* Token holders may withdraw their portion of this 30 ether, but if they forgot
+  to withdraw their portion of the 20 ether, they're screwed. Thus, there should
+  probably be some way of APL recovering abandoned ether.
+* There is now no concept of caching an ether out.
+* New tokens could be issued right after a payment.
+
+The one complexity that needs to be addressed is the difference between
+a contract that has withdrawn its yearly payment and one that hasn't. To
+make this work we would probably have to write our ``transfer`` function
+such that any transferred token is by default assumed already to have
+withdrawn the year's payments. In other words, if I buy a token on an exchange
+then the ``transfer()`` (or ``transferFrom()`` function) executed will make
+an entry for the receiving address that the year's payment has already been
+withdrawn. Otherwise two accounts could just transfer a token back and forth and
+drain the entire pool.
+
+The ``transfer()`` and ``transferFrom()`` functions would need to account
+for the fact that an address may already be holding ether with *hasn't*
+been withdrawn, so that it is only the new tokens that can't make the
+year's payments.
