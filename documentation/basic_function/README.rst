@@ -148,8 +148,8 @@ and deploying new systems. That was we could continue to raise money
 and continue to deploy systems without doing another ICO. This has the
 additional benefit of keeping the tokens from expiring after 30 years.
 
-One possibility would be to make sure that the token *does not accrue
-ehter*. Not all of the implications to this have been thought though, but
+One possibility would be to make sure that the token does *not accrue
+ether*. Not all of the implications to this have been thought though, but
 in basic terms:
 
 For the sake of discussion, let's say that payments are made every year.
