@@ -119,3 +119,6 @@ Running the tests is straight-forward:
 
 Unfortunately, using Open Zeppelin complicates deploying to other networks.
 See the `development notes <documentation>`__ for details.
+
+Notes on the basic functioning of the token are `here
+<documentation/basic_function>`__.
