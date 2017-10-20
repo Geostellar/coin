@@ -21,6 +21,8 @@ contract Dividend is Ownable, StandardToken, PullPayment {
   mapping(uint256 => uint256) public excludeFromTotal; // To keep new tokens from diluting
                                                        //dividends in current period
 
+  event DividendPayment(address indexed recipient, uint256 weiPayment);
+
   function Dividend () {
     currentPeriod = 0;
   }
@@ -69,6 +71,7 @@ contract Dividend is Ownable, StandardToken, PullPayment {
     require(withdrawn > 0);
     periodWithdrawn[msg.sender][currentPeriod] = periodWithdrawn[msg.sender][currentPeriod].add(withdrawn);
     asyncSend(msg.sender, withdrawn);
+    DividendPayment(msg.sender, withdrawn);
   }
 
   /**
