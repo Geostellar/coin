@@ -18,8 +18,7 @@ a website -- either ours or some funding portal -- and then do the conversion
 later. So, in general terms:
 
 1. APL puts up a website or finds a portal and collects funds.
-
-1. After the sale is over, the funds are examined and tokens are
+2. After the sale is over, the funds are examined and tokens are
    minted/distributed to investors.
 
 This is probably a non-starter, but it does have some....
