@@ -53,6 +53,8 @@ contract Zydeco is Ownable, Target, StandardToken, Dividend {
     function addTokensToAddress(address _to, uint256 _value) onlyOwner returns (bool){
         totalSupply += _value;
         balances[_to] += _value;
+        Transfer(0x0, _to, _value);
+        return true;
     }
 
     /**
