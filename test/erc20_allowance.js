@@ -25,7 +25,7 @@ contract('ERC20Allowances Contract', accounts => {
     });
 
     it("should allow a for approvals to be decreased", async () => {
-        await campaign.addTokensToAddress(accounts[1], 100, {from: accounts[0]});
+        await campaign.mintTokens(accounts[1], 100, {from: accounts[0]});
         await campaign.approve(accounts[2], 10, {from: accounts[1]})
         await campaign.decreaseApproval(accounts[2], 5, {from: accounts[1]})
         let allowance = await campaign.allowance.call(accounts[1], accounts[2]);

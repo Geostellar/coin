@@ -50,7 +50,7 @@ contract Zydeco is Ownable, Target, StandardToken, Dividend {
     * @param _to The address of the recipient
     * @param _value The value to transfer
     */
-    function addTokensToAddress(address _to, uint256 _value) onlyOwner returns (bool){
+    function mintTokens(address _to, uint256 _value) onlyOwner returns (bool){
         totalSupply += _value;
         balances[_to] += _value;
         Transfer(0x0, _to, _value);

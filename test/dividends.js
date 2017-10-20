@@ -49,7 +49,7 @@ contract('Dividend-enabled Contract', accounts => {
 
   it("should now allow owner to withdraw dividend payment", async () => {
       // First give the owner some tokens.
-      campaign.addTokensToAddress(accounts[0], 100);
+      campaign.mintTokens(accounts[0], 100);
 
       // Make a dividend payment
       let period = 3;
@@ -115,7 +115,7 @@ contract('Dividend-enabled Contract', accounts => {
       // Now transfer some tokens to account 4. When it comes to the amount they qualify for, nothing
       // should change.
 
-      campaign.addTokensToAddress(accounts[0], 100);
+      campaign.mintTokens(accounts[0], 100);
       await campaign.transfer(accounts[4], 50, {from: accounts[0]});
       bal1 = await campaign.checkDividend({from: accounts[1]});
       assert.equal(web3.fromWei(bal1.valueOf()), 0.25, "Account 1 should have 1/4 the ether");
@@ -173,7 +173,7 @@ contract('Dividend-enabled Contract', accounts => {
       // We haven't actually tested transferFrom yet! Now we will transfer 50 ether into 1, 2, and 3.
       // At first, nothing should change.
 
-      await campaign.addTokensToAddress(accounts[0], 150, {from: accounts[0]});
+      await campaign.mintTokens(accounts[0], 150, {from: accounts[0]});
       await campaign.approve(accounts[4], 150, {from: accounts[0]});
       await campaign.transferFrom(accounts[0], accounts[1], 50, {from: accounts[4]});
       await campaign.transferFrom(accounts[0], accounts[2], 50, {from: accounts[4]});

@@ -44,7 +44,7 @@ contract('ERC20Basic Contract', accounts => {
 
     it("should not allow non-owners to increase the total supply", async () => {
         await mock.expectInvalidOperation(async () => {
-            await campaign.addTokensToAddress(accounts[0], 100, {from: accounts[1]});
+            await campaign.mintTokens(accounts[0], 100, {from: accounts[1]});
         });
     });
 

@@ -23,7 +23,7 @@ async function mockCampaign(options){
     var coin = await Zydeco.new();
     options = options || {};
     // initialize will give a certain number of tokens to the owner, for testing.
-    if (options['initialize']) coin.addTokensToAddress(accounts[0], options['initialize'], {from: accounts[0]});
+    if (options['initialize']) coin.mintTokens(accounts[0], options['initialize'], {from: accounts[0]});
     return coin
 };
 

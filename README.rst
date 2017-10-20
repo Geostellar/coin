@@ -59,12 +59,12 @@ Approve a third-party transfer.
 
 We also have added functions necessary for the operation as a Zydeco coin.
 
-``addTokensToAddress``
-......................
+``mintTokens``
+..............
 
 .. code:: javascript
 
-  function addTokensToAddress(address _to, uint256 _value) onlyOwner returns (bool);
+  function mintTokens(address _to, uint256 _value) onlyOwner returns (bool);
 
 This function will add tokens to an address, and must be called by the owner. In operation,
 this function will be used for populating the accounts. The deployment scenario should look
@@ -72,13 +72,13 @@ something like:
 
 * Create the contract
 * Hold the sale and find out who wants tokens (this is being addressed currently elsewhere)
-* Use ``addTokensToAddress()`` to put the needed tokens into the owner's account.
+* Use ``mintTokens()`` to put the needed tokens into the owner's account.
 * Use ``transfer`` to move the tokens from the ower's account into the investor's account.
 
 One could also directly add the tokens to the investor's accounts directly with this
 function. The previous way is probably a bit better because this will emit the
 industry-standard ``Transfer`` event, which is widely understood. Any event that the
-``addTokensToAddress`` function emits will be APL-specific, and thus not as understood.
+``mintTokens`` function emits will be APL-specific, and thus not as understood.
 
 ``compromiseContract``
 ......................
