@@ -18,6 +18,7 @@ a website -- either ours or some funding portal -- and then do the conversion
 later. So, in general terms:
 
 1. APL puts up a website or finds a portal and collects funds.
+
 1. After the sale is over, the funds are examined and tokens are
    minted/distributed to investors.
 
@@ -58,7 +59,7 @@ send ether to that address.
 1. At the culmination of the sale the transactions would be examined and
    tokens would be created and distributed to the investors.
 
-If we were to go this route we would probably want to write a little code that 
+If we were to go this route we would probably want to write a little code that
 acted as a counter so people could see the progress of the sale as it was
 going on (probably via `web3 <https://github.com/ethereum/web3.js/>`__).
 
