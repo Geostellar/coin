@@ -193,6 +193,10 @@ Running the tests is straight-forward:
 * run ``testrpc`` in a terminal
 * run ``truffle test`` in another terminal
 
+
+Further Information
+--------------------
+
 Unfortunately, using Open Zeppelin complicates deploying to other networks.
 See the `development notes <documentation>`__ for details.
 
