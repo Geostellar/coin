@@ -54,8 +54,8 @@ send ether to that address.
 1. Publish an address. This would probably be a wallet, as opposed to a
    straight account (as I believe it is easier to track incoming transactions
    in a wallet).
-1. Collect ether funds.
-1. At the culmination of the sale the transactions would be examined and
+2. Collect ether funds.
+3. At the culmination of the sale the transactions would be examined and
    tokens would be created and distributed to the investors.
 
 If we were to go this route we would probably want to write a little code that
@@ -86,8 +86,8 @@ Payment to a Smart Contract
 We could create a smart contract that took care of the specifics of the sale.
 
 1. A smart contract for the sale would be created.
-1. Funds would be collected in ether.
-1. At the end of the sale tokens would be released.
+2. Funds would be collected in ether.
+3. At the end of the sale tokens would be released.
 
 **Advantages**:
 
