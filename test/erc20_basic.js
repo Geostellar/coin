@@ -13,7 +13,7 @@ contract('ERC20Basic Contract', accounts => {
 
     it("should expose the total supply, vis a vis the ERC20 standard", async () => {
         let totalSupply = await campaign.totalSupply.call();
-        assert.equal(totalSupply.valueOf(), initial, "Convervation of moolah broken in this reality");
+        assert.equal(totalSupply.valueOf(), initial, "Conversion of moolah broken in this reality");
     });
 
     it("should instantiate with the correct owner having some tokens", async () => {
@@ -21,7 +21,7 @@ contract('ERC20Basic Contract', accounts => {
         assert.equal(balance.valueOf(), initial, "Owner does not have correct number of tokens");
     });
 
-    it("should allow tokens to be transfered", async () => {
+    it("should allow tokens to be transferred", async () => {
         await campaign.transfer(accounts[1], 50);
         let balance = await campaign.balanceOf.call(accounts[0]);
         assert.equal(balance.valueOf(), 50, "Owner does not have correct number of tokens");
@@ -29,7 +29,7 @@ contract('ERC20Basic Contract', accounts => {
         assert.equal(balance2.valueOf(), 50, "Trasferee does not have correct number of tokens");
     });
 
-    it("should not allow more tokens to be transfered than are had", async () => {
+    it("should not allow more tokens to be transferred than are had", async () => {
         await mock.expectInvalidOperation(async () => {
             await campaign.transfer(accounts[1], 51, {from: accounts[0]});
         });
@@ -42,7 +42,7 @@ contract('ERC20Basic Contract', accounts => {
         assert.equal(balance4.valueOf(), 50, "Transferee got a TANSTAFL");
     });
 
-    it("should not allow non-owners to increate the total suply", async () => {
+    it("should not allow non-owners to increase the total supply", async () => {
         await mock.expectInvalidOperation(async () => {
             await campaign.addTokensToAddress(accounts[0], 100, {from: accounts[1]});
         });

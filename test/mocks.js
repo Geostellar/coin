@@ -16,19 +16,19 @@ let sendReward = function(sender, receiver, value){
 };
 
 // Recognized options:
-//   initialize: If set, intitialized the Zydeco campaign with this many
+//   initialize: If set, initialized the Zydeco campaign with this many
 //               tokens in accounts[0]
 
 async function mockCampaign(options){
     var coin = await Zydeco.new();
     options = options || {};
-    // initialize will give a certian number of tokens to the owner, for testing.
+    // initialize will give a certain number of tokens to the owner, for testing.
     if (options['initialize']) coin.addTokensToAddress(accounts[0], options['initialize'], {from: accounts[0]});
     return coin
 };
 
 // Recognized options:
-//   reward: If set, intitialized the bounty reward to this number
+//   reward: If set, initialized the bounty reward to this number
 
 async function deployBounty(options){
     var bounty = await ZydecoBounty.new();

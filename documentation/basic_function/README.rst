@@ -4,12 +4,14 @@ Basic Zydeco Function
 *(Chis, feel free to create a wiki and move this to that as you
 see fit.)*
 
-**Important Note**: There are some slight differences in what is described here
-and what was discussed on the call. On closer inspection, a few of the ideas
-discussed don't work. I'll try to point those out as they arise.
+Ground Rules
+------------
+
+There are a few requirements that the token must fulfill, regardless of the specifics
+of the implementation.
 
 Tradeability
-------------
+............
 
 An important attribute of the Zydeco token is that it can be exchange-traded.
 This imposes two constraints:
@@ -24,10 +26,66 @@ On the first point, though, note that by sub-classing Open Zeppelin's ``Standard
 we have implemented a super-set of ERC20: the ``StandardToken`` includes
 functions to increase and decrease the allowance of third-party transfers.
 
-Token Operation
----------------
 
-To illustrate the function of the token, some typical token life-cycles will be
+The Current Implementation
+--------------------------
+
+The current token is an ERC20-compliant token that allows for a few additional
+features:
+
+* Periodic dividends can be paid to the contract.
+* Token holders can withdraw those payments.
+* Token holders may trade or sell their tokens, either directly
+  or through an exchange. (This comes fro ERC20 compliance).
+* APL may mint new tokens and put them into circulation, should additional
+  funds need to be raised.
+
+Example Life-cycle
+..................
+
+* An ICO is made, selling a million tokens for a million dollars, in 2017
+* The funds are used to deploy solar.
+* A year after the sale of the tokens the revenue from the systems (less
+  APL fees) are paid to the contract.
+* The token holders can withdraw these payments.
+* Payments and withdraws can continue for the life of the investment (while
+  APL is in business).
+* Holder's can trade their tokens on public markets. If investors buy tokens then they
+  have rights to future dividends, based upon the size of their holdings and the
+  total size of everyone's holdings.
+* Currently if a dividend payment is not withdrawn before the next payment it is lost
+  (but research to obviate this is being conducted).
+
+The issuance of new tokens is a little complex, so a few words are in order.
+
+If APL wishes to issue some new tokens, they can do so by adding tokens to their
+account and then selling them on the open market. A few things to note, however:
+
+* Tokens being held in the owner (APL) account do not qualify for dividends. This
+  is important because it prevents APL from diluting the investors by just creating
+  a whole bunch of tokens and then not selling/transferring them.
+* Tokens which are issued into the market do *not* dilute investors in that
+  dividend period. If this were not the case then people who withdrew their
+  dividend before the issuance would get more per token than those who withdrew it
+  after, and that is an untenable situation.
+
+In practical terms, if new tokens are to be issued it would probably make sense to
+do so immediately *after* a dividend payment. This is because these tokens *will* be
+part of the pool in the next period, and doing it this way give APL/Geostellar as
+much time as possible to deploy resources with those funds, thus increasing the revenue
+(and offsetting the larger pool).
+
+
+
+
+
+An Alternative Implementation
+-----------------------------
+
+The above is how the token is currently coded. There is another alternative that
+has received some attention, so it will be described briefly here.
+
+To illustrate the function of this alternative token, some typical token life-cycles will be
 illustrative.
 
 1: Birth -- Buy Some Tokens
@@ -124,11 +182,15 @@ information, i.e.:
 5: The Eschaton -- Nothing Remaining
 ....................................
 
-30 years after the ICO the systems are no longer in operation, so no
-payment will ever be made to the contract. At this point the value of
-the token has converged to the value of the ether that has been paid
-into the contract over its life. While they could still be traded, it
-really doesn't make sense that they be, so holders will at that point
+If the pool of money raised in the ICO creates a going concern to an extent that
+APL/Geostellar will be able to deploy systems over and over, this investment marches on.
+On the other hand, if the money is sufficient to deploy only a limited number of
+systems, eventually the deployed systems will stop generating revenue, and the
+investment is more-or-less dead.
+
+At this point the value of the token has converged to the value of the ether that
+has been paid into the contract over its life. While they could still be traded,
+it really doesn't make sense that they be, so holders will at that point
 cash out their positions.
 
 Interestingly, the accrued ether is kind of an "alternative compliance
@@ -139,45 +201,3 @@ is based on future predicted cash-flows. Towards the end of the contract
 the value will be almost entirely determined by the accrued ether. Thus
 this is an investment which *decreases* in risk as time goes on. This
 may be an attractive feature for some investors.
-
-Alternatives
-------------
-
-It would be nice if we could figure out a way of issuing new tokens
-and deploying new systems. That was we could continue to raise money
-and continue to deploy systems without doing another ICO. This has the
-additional benefit of keeping the tokens from expiring after 30 years.
-
-One possibility would be to make sure that the token does *not accrue
-ether*. Not all of the implications to this have been thought though, but
-in basic terms:
-
-For the sake of discussion, let's say that payments are made every year.
-When a payment is made a data item is included as to how much was made in this
-current payment. Token holders can withdraw this payment up until the time when
-the next payment is made. As an abbreviated example:
-
-* An ICO is performed in 2017.
-* One year later a payment of 20 ether is made. People with tokens may
-  withdraw their portion of the ether.
-* One year after *that* another payment is made, this time of 30 ether.
-* Token holders may withdraw their portion of this 30 ether, but if they forgot
-  to withdraw their portion of the 20 ether, they're screwed. Thus, there should
-  probably be some way of APL recovering abandoned ether.
-* There is now no concept of caching an ether out.
-* New tokens could be issued right after a payment.
-
-The one complexity that needs to be addressed is the difference between
-a contract that has withdrawn its yearly payment and one that hasn't. To
-make this work we would probably have to write our ``transfer`` function
-such that any transferred token is by default assumed already to have
-withdrawn the year's payments. In other words, if I buy a token on an exchange
-then the ``transfer()`` (or ``transferFrom()`` function) executed will make
-an entry for the receiving address that the year's payment has already been
-withdrawn. Otherwise two accounts could just transfer a token back and forth and
-drain the entire pool.
-
-The ``transfer()`` and ``transferFrom()`` functions would need to account
-for the fact that an address may already be holding ether with *hasn't*
-been withdrawn, so that it is only the new tokens that can't make the
-year's payments.

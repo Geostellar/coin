@@ -17,7 +17,7 @@ The total supply of the token.
 
 .. code:: javascript
 
-    function totalSupply() constant returns (uint256 totalSupply)
+    function totalSupply() constant returns (uint256 totalSupply);
 
 ``balanceOf``
 .............
@@ -26,7 +26,7 @@ The balance of an account.
 
 .. code:: javascript
 
-    function balanceOf(address _owner) constant returns (uint256 balance)
+    function balanceOf(address _owner) constant returns (uint256 balance);
 
 ``transfer``
 ............
@@ -35,7 +35,7 @@ Allows tokens to be transfered.
 
 .. code:: javascript
 
-    function transfer(address _to, uint256 _value) returns (bool success)
+    function transfer(address _to, uint256 _value) returns (bool success);
 
 ``transferFrom``
 ................
@@ -45,7 +45,7 @@ via the ``approve()`` function (see below).
 
 .. code:: javascript
 
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success)
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
 
 
 ``approve``
@@ -55,7 +55,83 @@ Approve a third-party transfer.
 
 .. code:: javascript
 
-    function approve(address _spender, uint256 _value) returns (bool success)
+    function approve(address _spender, uint256 _value) returns (bool success);
+
+We also have added functions necessary for the operation as a Zydeco coin.
+
+``addTokensToAddress``
+......................
+
+.. code:: javascript
+
+  function addTokensToAddress(address _to, uint256 _value) onlyOwner returns (bool);
+
+This function will add tokens to an address, and must be called by the owner. In operation,
+this function will be used for populating the accounts. The deployment scenario should look
+something like:
+
+* Create the contract
+* Hold the sale and find out who wants tokens (this is being addressed currently elsewhere)
+* Use ``addTokensToAddress()`` to put the needed tokens into the owner's account.
+* Use ``transfer`` to move the tokens from the ower's account into the investor's account.
+
+One could also directly add the tokens to the investor's accounts directly with this
+function. The previous way is probably a bit better because this will emit the
+industry-standard ``Transfer`` event, which is widely understood. Any event that the
+``addTokensToAddress`` function emits will be APL-specific, and thus not as understood.
+
+``compromiseContract``
+......................
+
+.. code:: javascript
+
+  function compromiseContract() onlyOwner;
+
+Flag the contract as compromized, triggering a bounty payment. This is only used
+in testing.
+
+``payDividend``
+...............
+
+.. code:: javascript
+
+  function payDividend (uint256 _period) public payable onlyOwner;
+
+Pay a dividend. The period an integer that defines a period, and should be unique
+(in other words, one shouldn't pay two dividends to the same period). Most easily
+it should be a sequential counter, where ``period = currentPeriod + 1``
+
+``checkDividend``
+.................
+
+.. code:: javascript
+
+  function checkDividend () public constant returns(uint256);
+
+Check the size of the dividend payment that the sender qaulifies for in the
+current period.
+
+
+``withdrawDvidend``
+...................
+
+.. code:: javascript
+
+  function withdrawDvidend () public;
+
+The sender withdraws the payment for the current period. Note that we implement
+Open Zepplin's ``PullPayment`` interface, so after this function is executed the
+investor will still need to execute ``withdrawPayments``.
+
+``withdrawPayments``
+....................
+
+.. code:: javascript
+
+  function withdrawPayments() public;
+
+From Open Zeppelin's ``PullPayment`` interface. The sender claims the payments that they
+are approved for. (in APL's case they are approved by ``withdrawDvidend``).
 
 
 Events Emitted

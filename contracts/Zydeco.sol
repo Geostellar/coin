@@ -4,13 +4,14 @@
  */
 pragma solidity ^0.4.13;
 
+import "./Dividend.sol";
 import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
 import 'zeppelin-solidity/contracts/token/ERC20.sol';
 import 'zeppelin-solidity/contracts/token/StandardToken.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import {Bounty, Target} from "zeppelin-solidity/contracts/Bounty.sol";
 
-contract Zydeco is Ownable, Target, StandardToken {
+contract Zydeco is Ownable, Target, StandardToken, Dividend {
     using SafeMath for uint256;
 
     /** public data from our other classes:
@@ -32,6 +33,10 @@ contract Zydeco is Ownable, Target, StandardToken {
 
     // Now we have the Bounty code, as the contract is Bounty.
 
+    /**
+     * @dev Function to check if the contract has been compromised.
+     */
+
     function checkInvariant() returns(bool) {
       // Check the compromised flag.
       if (compromised == true) {
@@ -39,10 +44,6 @@ contract Zydeco is Ownable, Target, StandardToken {
       }
       return true;
     }
-
-    /**
-     * @dev Function to check tIf the contract has been compromised.
-     */
 
     /**
     * @dev Add tokens to an account, and increase total supply. Mostly for testing

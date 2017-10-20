@@ -13,10 +13,10 @@ contract('Owned Zydeco Campaign', accounts => {
         let owner = await campaign.owner.call();
         assert(owner == accounts[0], "Campaign was not created with correct owner");
     });
-    it("should allow the ownership to be transfered", async () => {
+    it("should allow the ownership to be transferred", async () => {
         await campaign.transferOwnership(accounts[2], {from: accounts[0]});
         let owner = await campaign.owner.call();
-        assert(owner == accounts[2], "Campaign ownership was not transfered");
+        assert(owner == accounts[2], "Campaign ownership was not transferred");
     });
     it("should fail when non-owner attempts ownership transfer", async () => {
         await mock.expectInvalidOperation(async () => {

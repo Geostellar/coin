@@ -74,7 +74,7 @@ contract('Bounty Contract', accounts => {
             web3.eth.getBalance(bounty.address).toNumber());
         }
       };
-      // Thebounty target:
+      // The bounty target:
       let target = await bounty.createTarget({from:researcher});
       let createdAddress = await target.logs[1].args.createdAddress;
       target =  await Zydeco.at(createdAddress);

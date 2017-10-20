@@ -145,9 +145,10 @@ Unfortunately, it seems like the contract has to be copied to the
 
 .. code:: bash
 
-  cp contracts/Zydeco.sol node_modules/
+  cp contracts/* node_modules/
   cd node_modules/
   solcjs --abi Zydeco.sol \
+    Dividend.sol \
     zeppelin-solidity/contracts/ownership/Ownable.sol  \
     zeppelin-solidity/contracts/token/ERC20.sol \
     zeppelin-solidity/contracts/math/SafeMath.sol \
@@ -167,6 +168,7 @@ explicitly add ``Zydeco.sol`` to the supplied files.
   solcjs --abi \
     ZydecoBounty.sol \
     Zydeco.sol \
+    Dividend.sol \
     zeppelin-solidity/contracts/ownership/Ownable.sol  \
     zeppelin-solidity/contracts/token/ERC20.sol \
     zeppelin-solidity/contracts/math/SafeMath.sol \
