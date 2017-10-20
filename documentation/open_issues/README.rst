@@ -4,9 +4,9 @@ Open Issues
 This document is meant to be a running issue-list of things that need to be
 understood and/or decided as part of the Zydeco token sale.
 
-* `Mechanics of the Sale`__
-* `Ownership of the Contract`__
-* `APL/Geostellar`__
+* `Mechanics of the Sale`_
+* `Ownership of the Contract`_
+* `APL/Geostellar`_
 
 Mechanics of the Sale
 ---------------------
