@@ -198,3 +198,5 @@ See the `development notes <documentation>`__ for details.
 
 Notes on the basic functioning of the token are `here
 <documentation/basic_function>`__.
+
+Open issues can be found `here <documentation/open_issues>`__.
